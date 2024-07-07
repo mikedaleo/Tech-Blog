@@ -1,79 +1,40 @@
-{{!-- <div>
-    <div>
-        <h2>Login</h2>
 
-        <form action="submit" class="form login-form">
-            <div class="form-group">
-                <label for="email-login">Email:</label>
-                <input type="text" id="email-login" placeholder="Email@email.com" />
+<div class="forms d-flex flex-row justify-content-evenly">
+    <div>
+        <h2 class="text-white m-5">Login</h2>
+
+        <form type="submit" class="login-form">
+            <div class="mb-3">
+                <label for="email-login" class="form-label text-white">Email address</label>
+                <input type="email" class="form-control" id="email-login">
+
             </div>
-            <div class="form-group">
-                <label for="password-login">Password:</label>
-                <input type="password" id="password-login" placeholder="Password1234" />
+            <div class="mb-3">
+                <label for="password-login" class="form-label text-white">Password</label>
+                <input type="password" class="form-control" id="password-login">
             </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
-            </div>
+            <button type="submit" class="btn btn-light">Login</button>
         </form>
     </div>
     <div>
-        <h2>Sign Up</h2>
+        <h2 class="text-white m-5">Sign-up</h2>
 
-        <form action="submit" class="form signup-form">
-            <div class="form-group">
-                <label for="name-signup">Name:</label>
-                <input type="text" id="name-signup" />
-            </div>
-            <div class="form-group">
-                <label for="email-signup">Email:</label>
-                <input type="text" id="email-signup" placeholder="Email@email.com" />
-            </div>
-            <div class="form-group">
-                <label for="password-signup">Password:</label>
-                <input type="password" id="password-signup" />
-            </div>
-            <div class="form-group">
-                <button type="submit">Sign Up</button>
-            </div>
-        </form>
-    </div>
-</div> --}}
-
-<div>
-    <h2>Login</h2>
-
-    <form type="submit" class="login-form">
-        <div class="mb-3">
-            <label for="email-login" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email-login">
-            
-        </div>
-        <div class="mb-3">
-            <label for="password-login" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password-login">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-<div>
-    <h2>Sign-up</h2>
-
-    <form type="submit" class="signup-form">
-         <div class="mb-3">
-                <label for="name-signup" class="form-label">Name</label>
+        <form type="submit" class="signup-form">
+            <div class="mb-3">
+                <label for="name-signup" class="form-label text-white">Name</label>
                 <input type="text" class="form-control" id="name-signup" />
             </div>
-        <div class="mb-3">
-            <label for="email-signup" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-            <label for="password-signup" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password-signup">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+            <div class="mb-3">
+                <label for="email-signup" class="form-label text-white">Email address</label>
+                <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text text-secondary">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password-signup" class="form-label text-white">Password</label>
+                <input type="password" class="form-control" id="password-signup">
+            </div>
+            <button type="submit" class="btn btn-light mb-5">Sign up</button>
+        </form>
+    </div>
 </div>
-
 <script src="./js/login.js"></script>
