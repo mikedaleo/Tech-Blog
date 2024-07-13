@@ -12,6 +12,7 @@
   [Contributing](#contributing)  
   [Tests](#tests)  
   [Questions](#questions) 
+  [Credit](#credit)
   
   
   ## <a id="usage"></a>Usage
@@ -29,3 +30,6 @@ This application uses the MIT license: https://opensource.org/licenses/MIT
   <a href="https://github.com/mikedaleo">GitHub</a>  
   or  
   Email: mikejdaleo@gmail.com
+  
+  ## <a id="credit"></a>Credit
+  This application uses the <a href="https://getbootstrap.com/">Bootstrap</a> CSS framework.
