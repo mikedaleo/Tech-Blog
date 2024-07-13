@@ -1,26 +1,29 @@
 <div class="d-flex flex-column p-3">
-<h1 class="font-monospace fw-bold ms-2 p-2 pb-0 text-white">My Dashboard</h1>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-light w-25" data-bs-toggle="modal" data-bs-target="#newPostModal">
-    + New Blog Post
-</button>
+    <h1 class="font-monospace fw-bold ms-2 p-2 pb-0 text-white">My Dashboard</h1>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-light w-25 font-monospace" data-bs-toggle="modal"
+        data-bs-target="#newPostModal">
+        + New Blog Post
+    </button>
 </div>
 <div class="posts-div p-3">
     <h2 class="text-white font-monospace text-center">My Posts</h2>
     {{#each posts as |post|}}
-    <div class="border border-2 border-black mb-2 rounded-2 m-4">
-        <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
-            <h2 class="text-white font-monospace">
-                {{post.title}}
-            </h2>
-            <div class="font-monospace">
-                Posted by you on {{format_date post.date_created}}
+    <a class="link-underline link-underline-opacity-0" href="/posts/{{post.id}}">
+        <div class="border border-2 border-black mb-2 rounded-2 m-4">
+            <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
+                <h2 class="text-white font-monospace">
+                    {{post.title}}
+                </h2>
+                <div class="font-monospace">
+                    Posted by you on {{format_date post.date_created}}
+                </div>
             </div>
+            <p class="p-3 text-white font-monospace">
+                {{post.content}}
+            </p>
         </div>
-        <p class="p-3 text-white font-monospace">
-            {{post.content}}
-        </p>
-    </div>
+    </a>
     {{/each}}
 </div>
 
@@ -29,26 +32,26 @@
 <!-- Modal -->
 <div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModal" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content font-monospace">
+            <div class="modal-header bg-dark-subtle ">
                 <h1 class="modal-title fs-5" id="newPostModal">New Blog Post</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
                 <form type="submit" class="new-post-form" id="new-post-form">
                     <div class="mb-3">
-                        <label for="post-title" class="form-label">Title</label>
+                        <label for="post-title" class="form-label text-white">Title</label>
                         <input type="text" class="form-control" id="post-title">
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Content</label>
+                        <label for="content" class="form-label text-white">Content</label>
                         <textarea class="form-control" id="post-content"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-light">Create Post</button>
                 </form>
             </div>
 
         </div>
     </div>
 </div>
-<script src="./js/newBlog.js"></script>
+<script src="/js/newBlog.js"></script>
