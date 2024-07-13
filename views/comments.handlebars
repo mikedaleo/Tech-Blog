@@ -1,0 +1,90 @@
+<div class="p-3">
+    <div class="border border-2 border-black mb-2 rounded-2 m-4">
+        <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
+            <h2 class="text-white font-monospace">
+                {{post.title}}
+            </h2>
+            <div class="font-monospace">
+                Posted by {{post.user.name}} on {{format_date post.date_created}}
+            </div>
+        </div>
+        <p class="p-3 text-white font-monospace">
+            {{post.content}}
+        </p>
+        {{#if logged_in}}
+        <button type="button" class="btn btn-light font-monospace" data-bs-toggle="modal"
+            data-bs-target="#newCommentModal">Add Comment
+        </button>
+        {{else}}
+        <a href="/login"><button type="button" class="btn btn-light font-monospace">Log in to comment</button></a>
+        {{/if}}
+    </div>
+    <div class="comments w-50">
+        <h2 class="font-monospace fw-bold ms-2 p-2 pb-0 text-white text-center">Comments</h2>
+        {{#each post.comments as |comment|}}
+        <div class="p-3">
+            <div class="border border-2 border-black rounded-2 ms-5">
+                <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
+                    <div class="font-monospace">
+                        Comment posted by {{user.name}} on {{format_date comment.date_created}}
+                    </div>
+                </div>
+                <p class="p-3 text-white font-monospace">
+                    {{comment.content}}
+                </p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newCommentModal" tabindex="-1" aria-labelledby="newCommentModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content font-monospace">
+                <div class="modal-header bg-dark-subtle">
+                    <h1 class="modal-title fs-5 " id="newCommentModal">New Comment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <form type="submit" class="new-comment-form" id="new-comment-form">
+                        <div class="mb-3">
+                            <label for="content" class="form-label text-white ">Content</label>
+                            <textarea class="form-control" id="comment-content"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-light ">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const newCommentHandler = async (event) => {
+            event.preventDefault();
+
+
+            const content = document.querySelector('#comment-content').value;
+
+            if (content) {
+                const response = await fetch('/api/comments/{{post.id}}', {
+                    method: 'POST',
+                    body: JSON.stringify({ content }),
+                    headers: { 'Content-Type': 'application/json' },
+                });
+
+                if (response.ok) {
+                    document.querySelector('#comment-content').value = '';
+                    document.location.reload();
+                } else {
+                    alert(response.statusText);
+                }
+            } else {
+                alert(response.statusText)
+            }
+        };
+
+        document
+            .querySelector('#new-comment-form')
+            .addEventListener('submit', newCommentHandler);
+    </script>

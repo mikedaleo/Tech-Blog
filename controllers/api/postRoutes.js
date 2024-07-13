@@ -32,4 +32,23 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
+router.patch('/:id', withAuth, async(req,res) => {
+    try {
+        const postData = await Post.update({ title: req.body.title, content: req.body.content },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            },
+        );
+        if(!postData) {
+            res.status(404).json({ message: 'Failed to find a Post with that id'});
+            return;
+        }
+        res.status(200).json(postData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 module.exports = router;

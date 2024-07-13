@@ -1,0 +1,96 @@
+<div class="posts-div p-3">
+    <div class="border border-2 border-black rounded-2 m-4">
+        <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
+            <h2 class="text-white font-monospace">
+                {{post.title}}
+            </h2>
+            <div class="font-monospace">
+                Posted by you on {{format_date post.date_created}}
+            </div>
+        </div>
+        <p class="p-3 text-white font-monospace">
+            {{post.content}}
+        </p>
+        <div class="buttons">
+            <button type="button" class="btn btn-light font-monospace" data-bs-toggle="modal"
+                data-bs-target="#updatePostModal">
+                Update Post
+            </button>
+            <button type="button" id="delete-button" class="btn btn-danger font-monospace">
+                Delete Post
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updatePostModal" tabindex="-1" aria-labelledby="updatePostModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content font-monospace">
+            <div class="modal-header bg-dark-subtle ">
+                <h1 class="modal-title fs-5" id="updatePostModal">Update Blog Post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark">
+                <form type="submit" class="update-post-form" id="update-post-form">
+                    <div class="mb-3">
+                        <label for="updated-post-title" class="form-label text-white">New Title</label>
+                        <input type="text" class="form-control" id="updated-post-title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updated-post-content" class="form-label text-white">New Content</label>
+                        <textarea class="form-control" id="updated-post-content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-light">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const updatePostHandler = async (event) => {
+        event.preventDefault();
+
+        const title = document.querySelector('#updated-post-title').value;
+        const content = document.querySelector('#updated-post-content').value;
+
+        if (title && content) {
+            const response = await fetch('/api/posts/{{post.id}}', {
+                method: 'PATCH',
+                body: JSON.stringify({ title, content }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (response.ok) {
+                document.location.replace('/dashboard')
+            } else {
+                alert(response.statusText);
+            }
+        } else {
+            alert("Please fill out all fields!")
+        }
+    };
+
+    const deletePostHandler = async () => {
+        const response = await fetch('/api/posts/{{post.id}}', {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert('Failed to delete post');
+        }
+    };
+
+    document
+        .querySelector('#update-post-form')
+        .addEventListener('submit', updatePostHandler);
+
+    document
+        .querySelector('#delete-button')
+        .addEventListener('click', deletePostHandler);
+
+</script>
