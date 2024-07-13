@@ -1,7 +1,10 @@
 # Tech-Blog
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+  
+  https://tech-blog-h6xe.onrender.com/
   ## Description
   A blog site where developers can publish their blog posts and comment on other developer's posts.
+  ![Screenshot](./public/assets/tech-blog-h6xe.onrender.com.png)
 
   ## Table of Contents
   [Usage](#usage)  
