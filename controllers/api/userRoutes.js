@@ -12,7 +12,13 @@ router.post('/', async (req, res) => {
             res.status(201).json(userData);
         });
     } catch (err) {
-        res.status(400).json(err);
+        if (err.name === 'SequelizeValidationError') {
+           return res.status(400).json({
+                success: false,
+                msg: err.errors.map(e => e.message)
+            });
+        }
+        res.status(500).json({ success: false, msg: 'Internal server error '});
     }
 });
 
