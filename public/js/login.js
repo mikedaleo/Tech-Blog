@@ -17,7 +17,7 @@ const loginFormHandler = async (event) => {
         // If successful, redirect the browser to the homepage
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        alert(response.statusText, "Email or password incorrect, please try again!");
       }
     }
   };
