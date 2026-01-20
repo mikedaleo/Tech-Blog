@@ -1,7 +1,7 @@
 <div class="posts-div p-3">
     {{#each posts as |post|}}
     <a class="link-underline link-underline-opacity-0" href="/comments/{{post.id}}">
-        <div class="border border-2 border-black mb-2 rounded-2 m-4">
+        <div class="border border-2 border-black mb-2 rounded-2 m-4 post">
             <div class="p-3 mb-2 bg-black text-white d-flex justify-content-between">
                 <h2 class="text-white font-monospace">
                     {{post.title}}
@@ -17,3 +17,21 @@
     </a>
     {{/each}}
 </div>
+<script>
+    const posts = document.querySelectorAll('.post');
+
+    posts.forEach((post) => {
+        post.addEventListener('mouseenter', () => {
+            post.classList.remove('border-black');
+            post.classList.add('border-dark-subtle');
+    })
+    });
+
+    posts.forEach((post) => {
+        post.addEventListener('mouseleave', () => {
+            post.classList.remove('border-dark-subtle');
+            post.classList.add('border-black');
+    })
+    });
+
+</script>
